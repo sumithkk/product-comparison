@@ -9,7 +9,7 @@ const ProductList = (props) =>
     <div className="price" style={{ color: "#444" }}>
       <strong>₹{Math.trunc(props.data.productPricingSummary[props.sp].finalPrice)}</strong>
       <strong style={{ color: "#8f8f8f" }}>₹{Math.trunc(props.data.productPricingSummary[props.sp].price)}</strong>
-      <span style={{ color: "green", textDecoration: "line-through" }}>₹{Math.trunc(props.data.productPricingSummary[props.sp].totalDiscount)}% off</span>
+      <strong style={{ color: "green", textDecoration: "line-through" }}>₹{Math.trunc(props.data.productPricingSummary[props.sp].totalDiscount)}% off</strong>
     </div>
   </div>
 
