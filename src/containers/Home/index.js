@@ -29,17 +29,17 @@ class Home extends Component {
     let prods = Object.keys(this.props.products.products.compareSummary.images)
 
     return (
-      <div className="home mt-5">
+      <div className="home pt-5" style={{ background: "#fff" }}>
         <div className="row">
           <div className="col-12">
-            <h2 className="mb-3">Compare Products</h2>
+            <h3 className="mb-3">Compare Products</h3>
           </div>
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div className="pt-4" style={{ display: "flex", flexWrap: "wrap" }}>
           {this.props.products.products.length === undefined &&
             prods.map((p, i) => (
               <Link key={i} to={`/compare/${p}`} onClick={() => this.select(p)}>
-                <ProductList sp={p} data={this.props.products.products.compareSummary} />
+                <ProductList display sp={p} data={this.props.products.products.compareSummary} />
               </Link>
             ))
           }

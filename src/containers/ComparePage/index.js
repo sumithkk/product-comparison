@@ -39,7 +39,7 @@ class ComparePage extends Component {
             showDrop: !this.state.showDrop
         })
     }
-    toddleDiff = () => {
+    toggleDiff = () => {
         this.setState({
             showDiff: !this.state.showDiff
         })
@@ -49,13 +49,13 @@ class ComparePage extends Component {
         else return (
             <div className="leftPanel">
                 <div style={{
-                    display: "flex", padding: "15px",
+                    display: "flex", paddingTop: "15px",
                     background: "#fff"
                 }}>
                     <div className="header">
                         <div>
-                            <div style={{ fontSize: "18px", fontWeight: "bold" }}>Compare</div>
-                            <div>2 items selected</div>
+                            <div style={{ fontSize: "20px", fontWeight: "bold" }}>Compare</div>
+                            <div>{this.props.data.selectedProducts.length} items selected</div>
                         </div>
 
                         <div>
@@ -64,7 +64,7 @@ class ComparePage extends Component {
                                     name="diff"
                                     type="checkbox"
                                     checked={this.state.showDiff}
-                                    onChange={() => this.toddleDiff()} />
+                                    onChange={() => this.toggleDiff()} />
                                 Show only difference
                                 <span className="checkmark"></span>
                             </label>
@@ -84,7 +84,10 @@ class ComparePage extends Component {
 
                             <div>
                                 <strong>Add a product</strong>
-                                <div className="selectBox" onClick={() => this.toggleDrop()}>Choose a Product</div>
+                                <div className="selectBox" onClick={() => this.toggleDrop()}>
+                                    <span>Choose a Product</span>
+                                    <span style={{ float: "right" }}>▾</span>
+                                </div>
                                 {this.state.showDrop && (
                                     <div className="selectDrop">
                                         {Object.keys(this.props.data.products.products.featuresList[0].features[0].values).filter(n => !this.props.data.selectedProducts.includes(n)).map(sp => (
@@ -116,10 +119,10 @@ class ComparePage extends Component {
 
 const CategoryHeading = (props) => {
     return (
-        <div className="categories">
+        <div className="categories" style={{ fontWeight: "bold" }}>
             {props.data.map((f, i) => (
                 <div key={i} style={{ width: "100%" }}>
-                    <h1 style={{ height: "36px" }}>{props.dummy ? "" : f.title}</h1>
+                    <h1 style={{ height: "36px", fontWeight: "bold" }}>{props.dummy ? "" : f.title}</h1>
                     {f.features.map((fl, idx) => (
                         <div key={idx} className="cat" style={{ height: "44px" }}>{props.dummy ? " " : fl.featureName}</div>
                     ))}
@@ -129,7 +132,6 @@ const CategoryHeading = (props) => {
         </div>
     )
 }
-
 
 // export default ComparePage
 export default connect(
